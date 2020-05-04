@@ -39,3 +39,35 @@ Class<String> helloClass = "Hello".getClass(); // Compile time error
 Class<Object> helloClass = "Hello".getClass(); // Compile time error 
 ```
 This happens because generics in java works in this way. Class<String> and Class<Object> are not extension of Class<?> in java. to achieve this we use Class<? extends String> or Class<? extends Object>
+
+
+## Getting the super class of a given class
+getSuperClass() returns the only super class
+The super class of Object class is Null.
+getInterfaces() returns the array of interfaces implemented
+
+## Getting the declared and the non-declared fields of the class
+The `declared` elements in the class are the elements declared inside the class
+- private
+- protected
+- public
+with no inherited elements.
+
+The `non-declared` elements of a class are the elements declared in this class and all the super class, but only the public ones
+
+```java
+class Person {
+ private int age;
+ private String name;
+ 
+ // getters and setters
+}
+```
+
+```java
+Person.class.getFields(); // gives an empty array because fields are private
+Person.class.getDeclaredFields(); // gives the array of Fields[] 
+```
+
+Similarly getMethods(), getConstructors() and getDeclaredMethods() function exist for method.
+getDeclaredConstructors() donot return constructors of the super class which is a difference with it's counter functions for fields and methods.
